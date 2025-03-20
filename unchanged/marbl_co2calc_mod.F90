@@ -72,6 +72,7 @@ module marbl_co2calc_mod
      real(kind=r8) :: ta   ! total alkalinity
      real(kind=r8) :: pt   ! total phosphorous
      real(kind=r8) :: sit  ! total silicon
+     real(kind=r8) :: docr  ! Refractory dissolved organic carbon (NEW)
      real(kind=r8) :: temp ! temperature (for error reporting)
      real(kind=r8) :: salt ! salinity (for error reporting)
   end type co2calc_state_type
@@ -248,7 +249,7 @@ contains
   subroutine marbl_co2calc_interior(&
        num_elements, num_active_elements, lcomp_co2calc_coeffs,   &
        co2calc_coeffs,  co2calc_state, temp, salt, press_bar, dic_in, ta_in, pt_in, &
-       sit_in, phlo, phhi, ph, H2CO3, HCO3, CO3, marbl_status_log)
+       sit_in, docr_in, phlo, phhi, ph, H2CO3, HCO3, CO3, marbl_status_log)
 
     !---------------------------------------------------------------------------
     ! Calculate H2CO3, HCO3, CO3 from total alkalinity, total CO2, temp, salinity (s), etc.
@@ -264,6 +265,7 @@ contains
     real(kind=r8)             , intent(in)    :: ta_in(num_elements)     ! total alkalinity (neq/cm^3)
     real(kind=r8)             , intent(in)    :: pt_in(num_elements)     ! inorganic phosphate (nmol/cm^3)
     real(kind=r8)             , intent(in)    :: sit_in(num_elements)    ! inorganic silicate (nmol/cm^3)
+    real(kind=r8)             , intent(in)    :: docr_in(num_elements)    ! dissolved organic carbon (nmol/cm^3)
     type(co2calc_coeffs_type) , intent(inout) :: co2calc_coeffs(num_elements)
     type(co2calc_state_type)  , intent(inout) :: co2calc_state(num_elements)
     real(kind=r8)             , intent(inout) :: phlo(num_elements)      ! lower limit of pH range
@@ -296,6 +298,7 @@ contains
     co2calc_state_in(:)%ta  = ta_in
     co2calc_state_in(:)%pt  = pt_in
     co2calc_state_in(:)%sit = sit_in
+    co2calc_state_in(:)%docr = docr_in
     co2calc_state_in(:)%temp = temp
     co2calc_state_in(:)%salt = salt
 
@@ -763,6 +766,7 @@ contains
        ta(c)   = max(ta_in(c),alk_min)  * vol_to_mass
        pt(c)   = max(pt_in(c),c0)       * vol_to_mass
        sit(c)  = max(sit_in(c),c0)      * vol_to_mass
+       docr(c)  = max(docr_in(c),c0)      * vol_to_mass
 
        x1(c) = c10 ** (-phhi(c))
        x2(c) = c10 ** (-phlo(c))
