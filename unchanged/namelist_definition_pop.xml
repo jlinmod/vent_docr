@@ -6127,7 +6127,7 @@ type="char*256"
 category="Forcing (Ecosystem)"
 group="ecosys_forcing_data_nml"
 input_pathname="abs" >
-Default: docvent_jsl009_gx3v7_2025.nc
+Default: docvent_gx3v7_2025_reordered.nc
 </entry>
 
 <entry
