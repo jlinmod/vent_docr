@@ -6121,6 +6121,47 @@ Default: none provided
 </entry>
 
 <entry
+id="doc_prod_input%filename"
+type="char*256"
+category="Forcing (Ecosystem)"
+group="ecosys_forcing_data_nml"
+input_pathname="abs" >
+Default: docvent_gx3v7_2025_reordered.nc
+</entry>
+
+<entry
+id="doc_prod_input%file_varname"
+type="char*256"
+category="Forcing (Ecosystem)"
+group="ecosys_forcing_data_nml" >
+Default: 'DOC_prod'
+</entry>
+
+<entry
+id="doc_prod_input%file_fmt"
+type="char*256"
+category="Forcing (Ecosystem)"
+group="ecosys_forcing_data_nml" >
+Default: 'nc'
+</entry>
+
+<entry
+id="doc_prod_input%scale_factor"
+type="real"
+category="Forcing (Ecosystem)"
+group="ecosys_forcing_data_nml" >
+Default: 1
+</entry>
+
+<entry
+id="doc_prod_input%default_val"
+type="real"
+category="Forcing (Ecosystem)"
+group="ecosys_forcing_data_nml" >
+Default: none provided
+</entry>
+	
+<entry
 id="o2_consumption_scalef_opt"
 type="char*256"
 category="Forcing (Ecosystem)"
