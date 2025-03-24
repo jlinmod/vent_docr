@@ -288,7 +288,8 @@ module ecosys_forcing_mod
                        potemp_ind         = 0, &
                        salinity_ind       = 0, &
                        pressure_ind       = 0, &
-                       fesedflux_ind      = 0
+                       fesedflux_ind      = 0, &
+                       DOC_prod_ind      = 0
 
   !-----------------------------------------------------------------------
   ! Other private variables
