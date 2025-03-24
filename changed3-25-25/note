@@ -1,0 +1,11 @@
+Rob said-
+  
+The error message in your cesm log file seems to suggest that there is a mismatch occurring when assigning the netcdf variable ‘DOC_prod’ 
+from your ‘docvent…nc’ file to ‘doc_prod_input’ in the ecosystem.forcing.mod.F90 file, or that the mismatch occurs when assigning the contents 
+of ‘doc_prod_input’ into interior_tendencies.F90. My suspicion is perhaps the latter. There is already a flux initialized inside interior 
+tendencies with the name DOC_prod. I would choose a different name, perhaps ‘docsedflux’ to match how it is named for iron. I’m worried that on 
+line 1370 of your updated ecosys_forcing_mod_doc_vent.F90 code that allocating DOC from vents to ‘DOC_prod’ in interior tendencies causes an error. 
+  It looks like ‘fesedflux’ is what this flux is called inside of interior tendencies in MARBL. So perhaps try that. 
+
+
+change DOC_prod variable in the namelist files to docsedflux
