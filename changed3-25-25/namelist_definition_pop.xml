@@ -6134,7 +6134,7 @@ id="doc_prod_input%file_varname"
 type="char*256"
 category="Forcing (Ecosystem)"
 group="ecosys_forcing_data_nml" >
-Default: 'DOC_prod'
+Default: 'docsedflux'
 </entry>
 
 <entry
