@@ -289,7 +289,7 @@ module ecosys_forcing_mod
                        salinity_ind       = 0, &
                        pressure_ind       = 0, &
                        fesedflux_ind      = 0, &
-                       DOC_prod_ind      = 0
+                       docsedflux_ind      = 0
 
   !-----------------------------------------------------------------------
   ! Other private variables
@@ -438,7 +438,7 @@ contains
     call set_defaults_tracer_read(iron_flux_input, file_varname='iron_flux')
     call set_defaults_tracer_read(fesedflux_input, file_varname='FESEDFLUXIN')
     call set_defaults_tracer_read(feventflux_input, file_varname='FESEDFLUXIN')
-    call set_defaults_tracer_read(doc_prod_input, file_varname='DOC_prod')
+    call set_defaults_tracer_read(doc_prod_input, file_varname='docsedflux')
     o2_consumption_scalef_opt   = 'const'
     o2_consumption_scalef_const = c1
     call set_defaults_tracer_read(o2_consumption_scalef_input, file_varname='o2_consumption_scalef')
@@ -1012,7 +1012,7 @@ contains
                           rank=3, dim3_len=km, id=n)
 
           case ('DOC Flux')
-            DOC_prod_ind = n
+            docsedflux_ind = n
             call interior_tendency_forcings(n)%add_forcing_field(                &
                           field_source='file_time_invariant',                 &
                           marbl_varname=marbl_varname, field_units=units,     &
@@ -1367,7 +1367,7 @@ contains
     integer :: iblock, k, n ! loop indices
 
     real (r8), allocatable, target :: feventflux(:,:,:,:) !  Fe from vents
-    real (r8), allocatable, target :: DOC_prod(:,:,:,:) !  DOC from vents
+    real (r8), allocatable, target :: docsedflux(:,:,:,:) !  DOC from vents
 
     do iblock = 1, nblocks_clinic
 
